@@ -313,14 +313,14 @@ fun Application.module() {
 We will also need a data source holding usernames and passwords. One simple option would be:
 
 ```kotlin
-class User(val name: String, val password: String)
+data class User(val name: String, val password: String)
 
 val users = Collections.synchronizedMap(
     listOf(User("test", "test"))
         .associateBy { it.name }
         .toMutableMap()
 )
-class LoginRegister(val user: String, val password: String)
+data class LoginRegister(val user: String, val password: String)
 
 ```
 
@@ -657,7 +657,7 @@ open class SimpleJWT(val secret: String) {
     fun sign(name: String): String = JWT.create().withClaim("name", name).sign(algorithm)
 }
 
-class User(val name: String, val password: String)
+data class User(val name: String, val password: String)
 
 val users = Collections.synchronizedMap(
     listOf(User("test", "test"))
@@ -667,7 +667,7 @@ val users = Collections.synchronizedMap(
 
 class InvalidCredentialsException(message: String) : RuntimeException(message)
 
-class LoginRegister(val user: String, val password: String)
+data class LoginRegister(val user: String, val password: String)
 ```
 {% endcapture %}
 
